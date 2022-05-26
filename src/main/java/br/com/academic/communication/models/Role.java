@@ -2,54 +2,40 @@ package br.com.academic.communication.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="authorities")
+@Table(name = "authorities")
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idautoridades")
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY	)
+	@Column(name = "IDAUTORIDADES")
+	private Integer id; //Mudar para Long
 	
-	@Column(name="username", nullable = false)
+	@Column(name = "username")
 	private String username;
+	
 	@Column(name="authority", nullable = false)
 	private String role;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user.username")
-	private User user;
-	
+		
 	public Role() {
 	}
-
-	public Role(String username, String role) {
+	
+	public Role(String username) {
 		this.username = username;
-		this.role = role;
+		role = "ROLE_user";
 	}
-
-	public Long getId() {
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getRole() {

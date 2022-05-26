@@ -1,51 +1,41 @@
 package br.com.academic.communication.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO )
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	@Column(name="idlogin")
-	private Long id;
+	private Integer id; //Mudar para Long
 	
-	@Column(name="username", nullable = false, unique = true)
+	@Column(name="username",nullable = false)
 	private String username;
 	@Column(name="password",nullable = false)
 	private String password;
 	@Column(name="enabled", nullable = false)
 	private boolean enabled;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = false)
-    private List<Role> listAuthorities = new ArrayList<>();
-		
 	public User() {}
 
-	public User(String username, String password, boolean enabled, List<Role> roles) {
-		super();
+	public User(String username, String password, boolean enabled) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.listAuthorities = roles;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -73,8 +63,4 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public List<Role> getListAuthorities() {
-		return listAuthorities;
-	}
-	
 }
