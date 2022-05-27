@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +14,8 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	@Column(name="idlogin")
-	private Integer id; //Mudar para Long
+	@Column(name="iduser")
+	private Long id;
 	
 	@Column(name="username",nullable = false)
 	private String username;
@@ -31,11 +32,11 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
