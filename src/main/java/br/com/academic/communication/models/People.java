@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-
 @Entity
 @Table(name = "people")
 public class People {

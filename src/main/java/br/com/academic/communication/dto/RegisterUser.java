@@ -1,21 +1,35 @@
 package br.com.academic.communication.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import br.com.academic.communication.models.People;
 import br.com.academic.communication.models.Role;
 import br.com.academic.communication.models.User;
 
 public class RegisterUser {
 
+	@NotBlank
+	@Size(max=50)
 	private String name;
+	@NotBlank
+	@Size(max=50)
 	private String surname;
+	@NotBlank
+	@Size(max=50)
 	private String profession;
+	@NotBlank
+	@Size(max=100)
 	private String email;
+	@NotBlank
+	@Size(min = 5, max=50)
 	private String username;
+	@NotBlank
+	@Size(max=200)
 	private String password;
 	
 	public RegisterUser() {
 	}
-	
 	
 	public RegisterUser(String name, String surname, String profession, String email, String username,
 			String password) {
@@ -83,13 +97,14 @@ public class RegisterUser {
 		return role;
 	}
 
-	public People toPeople() {
+	public People toPeople(User user) {
 		People info = new People();
 		
 		info.setEmail(email);
 		info.setName(name);
 		info.setSurname(surname);
 		info.setProfession(profession);
+		info.setUser(user);
 		
 		return info;
 	}

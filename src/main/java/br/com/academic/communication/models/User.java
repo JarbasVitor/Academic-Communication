@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,19 +16,19 @@ public class User {
 	@Column(name="iduser")
 	private Long id;
 	
-	@Column(name="username",nullable = false)
+	@Column(name="username", nullable = false)
 	private String username;
-	@Column(name="password",nullable = false)
+	@Column(name="password", nullable = false)
 	private String password;
 	@Column(name="enabled", nullable = false)
 	private boolean enabled;
 	
 	public User() {}
 
-	public User(String username, String password, boolean enabled) {
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.enabled = enabled;
+		this.enabled = true;
 	}
 
 	public Long getId() {
