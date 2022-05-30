@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import br.com.academic.communication.dto.RegisterUser;
 import br.com.academic.communication.models.People;
 import br.com.academic.communication.models.Role;
 import br.com.academic.communication.models.User;
+import br.com.academic.communication.repositories.UserRepository;
 import br.com.academic.communication.services.CrudPeopleService;
 import br.com.academic.communication.services.CrudRoleService;
 import br.com.academic.communication.services.CrudUserService;
@@ -28,7 +30,7 @@ public class LoginController {
 	@Autowired
 	CrudRoleService crudRoleService;
 	@Autowired
-	CrudPeopleService crudInformationService;
+	CrudPeopleService crudPeopleService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -46,17 +48,27 @@ public class LoginController {
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult) {
 		
+		User user = registerUser.toUser();
+		
+		if(!(crudUserService.checkUsername(user) == "Nenhum Usuario Encontrado!")) {
+			bindingResult.rejectValue("username", "error.username","Usuario já cadastrado");
+		}
+			
+		People info = registerUser.toPeople(user);
+		
+		if(!(crudPeopleService.checkEmail(info) == "Nenhum Email Encontrado!")) {
+			bindingResult.rejectValue("email", "error.email","Email já cadastrado");
+		}
+		
+		Role role = registerUser.toRole();
+
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
-
-		User user = registerUser.toUser();
-		People info = registerUser.toPeople(user);
-		Role role = registerUser.toRole();
-
+		
 		try {
 			crudUserService.save(user);
-			crudInformationService.save(info);
+			crudPeopleService.save(info);
 			crudRoleService.save(role);
 
 			return "login";

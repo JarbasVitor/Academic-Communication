@@ -24,6 +24,16 @@ public class CrudUserService {
 		userRepository.save(user);
 	}
 	
+	public String checkUsername(User user) {
+		
+		Long userId = userRepository.findByUsername(user.getUsername());
+		
+		if(userId != null ) {
+			return "Usuario Já Cadastrado!";
+		}
+		return "Nenhum Usuario Encontrado!";
+	}
+	
 	public Long findByUsername(String name) {
 		Long id;
 		return id = userRepository.findByUsername(name);
