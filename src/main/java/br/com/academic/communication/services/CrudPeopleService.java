@@ -16,14 +16,14 @@ public class CrudPeopleService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public CrudPeopleService(PeopleRepository informationRepository) {
-		this.peopleRepository = informationRepository;
+	public CrudPeopleService(PeopleRepository peopleRepository) {
+		this.peopleRepository = peopleRepository;
 	}
 	
-	public void save(People info) {
-		Long idUser = userRepository.findByUsername(info.getUser().getUsername());
-		info.setIdUser(idUser);
-		peopleRepository.save(info);
+	public void save(People people) {
+		Long idUser = userRepository.findByUsername(people.getUser().getUsername());
+		people.setIdUser(idUser);
+		peopleRepository.save(people);
 	}
 	
 	public String checkEmail(People people) {
@@ -31,8 +31,8 @@ public class CrudPeopleService {
 			Long userEmail = peopleRepository.findByEmail(people.getEmail());
 			
 			if(userEmail != null ) {
-				return "Email Já Cadastrado!";
+				return "Email already in database!";
 			}
-			return "Nenhum Email Encontrado!";
+			return "No one email find!";
 	}
 }

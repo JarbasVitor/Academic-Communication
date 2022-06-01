@@ -50,14 +50,14 @@ public class LoginController {
 		
 		User user = registerUser.toUser();
 		
-		if(!(crudUserService.checkUsername(user) == "Nenhum Usuario Encontrado!")) {
-			bindingResult.rejectValue("username", "error.username","Usuario já cadastrado");
+		if(!(crudUserService.checkUsername(user) == "No one user find!")) {
+			bindingResult.rejectValue("username", "error.username","User Already Registered!");
 		}
 			
 		People info = registerUser.toPeople(user);
 		
-		if(!(crudPeopleService.checkEmail(info) == "Nenhum Email Encontrado!")) {
-			bindingResult.rejectValue("email", "error.email","Email já cadastrado");
+		if(!(crudPeopleService.checkEmail(info) == "No one email find!")) {
+			bindingResult.rejectValue("email", "error.email","Email Already Registered!");
 		}
 		
 		Role role = registerUser.toRole();
@@ -67,6 +67,7 @@ public class LoginController {
 		}
 		
 		try {
+			
 			crudUserService.save(user);
 			crudPeopleService.save(info);
 			crudRoleService.save(role);

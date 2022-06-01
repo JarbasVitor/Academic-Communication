@@ -46,6 +46,10 @@ public class WebSecurityConfig  {
 	@Bean
 	public UserDetailsManager users(AuthenticationManagerBuilder auth) throws Exception{
 
+		//
+		//Responsible for authenticating user and logging in to the site
+		//
+		
 		JdbcUserDetailsManager login = new JdbcUserDetailsManager(dataSource);
 		return login;
 	}	

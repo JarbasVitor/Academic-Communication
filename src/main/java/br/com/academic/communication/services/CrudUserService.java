@@ -29,13 +29,14 @@ public class CrudUserService {
 		Long userId = userRepository.findByUsername(user.getUsername());
 		
 		if(userId != null ) {
-			return "Usuario Já Cadastrado!";
+			return "User alredy in database!";
 		}
-		return "Nenhum Usuario Encontrado!";
+		
+		return "No one user find!";
 	}
 	
 	public Long findByUsername(String name) {
-		Long id;
-		return id = userRepository.findByUsername(name);
+		
+		return userRepository.findByUsername(name);
 	}
 }
