@@ -15,8 +15,8 @@
 		    </div>
 		    <div>
 		        <label>last name</label>
-		        <input th:field="*{surname}" required/>
-		        <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error</span>
+		        <input th:field="*{lastName}" required/>
+		        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</span>
 		        
 		    </div>
 		    <div>
@@ -40,6 +40,12 @@
 		        <label>Username ( Login )</label>
 		        <input th:field="*{username}" required/>
 		        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</span>
+		        
+		    </div>
+		       <div>
+		        <label>School</label>
+		        <input th:field="*{school}" required/>
+		        <span th:if="${#fields.hasErrors('school')}" th:errors="*{school}">Name Error</span>
 		        
 		    </div>
 		    <button type="submit">submit</button>

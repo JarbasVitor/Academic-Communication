@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 import br.com.academic.communication.models.People;
 import br.com.academic.communication.models.Role;
+import br.com.academic.communication.models.School;
 import br.com.academic.communication.models.User;
 
 public class RegisterUser {
@@ -29,18 +30,22 @@ public class RegisterUser {
 	@NotBlank
 	@Size(max=200)
 	private String password;
+	@NotBlank
+	@Size(max = 30)
+	private String school;
 	
 	public RegisterUser() {
 	}
 	
 	public RegisterUser(String name, String lastName, String profession, String email, String username,
-			String password) {
+			String password, String school) {
 		this.name = name;
 		this.lastName = lastName;
 		this.profession = profession;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.school = school;
 	}
 
 	public String getName() {
@@ -49,12 +54,7 @@ public class RegisterUser {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSurname() {
-		return lastName;
-	}
-	public void setSurname(String lastName) {
-		this.lastName = lastName;
-	}
+	
 	public String getProfession() {
 		return profession;
 	}
@@ -79,7 +79,23 @@ public class RegisterUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
 
 	public User toUser() {
 		User user = new User();
@@ -117,6 +133,18 @@ public class RegisterUser {
 		people.setUser(user);
 		
 		return people;
+	}
+	
+	public School toSchool(User user) {
+	
+		School school = new School();
+		
+		school.setCreatedAt(LocalDateTime.now());
+		school.setUpdatedAt(LocalDateTime.now());
+		school.setSchool(this.school);
+		school.setUser(user);
+		
+		return school;
 	}
 	
 	
