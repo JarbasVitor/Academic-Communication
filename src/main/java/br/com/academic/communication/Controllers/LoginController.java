@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,6 @@ import br.com.academic.communication.dto.RegisterUser;
 import br.com.academic.communication.models.People;
 import br.com.academic.communication.models.Role;
 import br.com.academic.communication.models.User;
-import br.com.academic.communication.repositories.UserRepository;
 import br.com.academic.communication.services.CrudPeopleService;
 import br.com.academic.communication.services.CrudRoleService;
 import br.com.academic.communication.services.CrudUserService;
@@ -48,34 +46,32 @@ public class LoginController {
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult) {
 		
+		
 		User user = registerUser.toUser();
+		
+		People people = registerUser.toPeople(user);
+		Role role = registerUser.toRole(user);
 		
 		if(!(crudUserService.checkUsername(user) == "No one user find!")) {
 			bindingResult.rejectValue("username", "error.username","User Already Registered!");
-		}
-			
-		People info = registerUser.toPeople(user);
-		
-		if(!(crudPeopleService.checkEmail(info) == "No one email find!")) {
+		}else if(!(crudUserService.checkEmail(user) == "No one email find!")) {
 			bindingResult.rejectValue("email", "error.email","Email Already Registered!");
 		}
 		
-		Role role = registerUser.toRole();
-
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
 		
 		try {
-			
 			crudUserService.save(user);
-			crudPeopleService.save(info);
+			crudPeopleService.save(people);
 			crudRoleService.save(role);
 
 			return "login";
-		} catch (Exception e) {
+			
+		} catch (RuntimeException e) {
 			e.printStackTrace();
-			return "registration";
+			return "registration";	
 		}
 	}
-}
+}	

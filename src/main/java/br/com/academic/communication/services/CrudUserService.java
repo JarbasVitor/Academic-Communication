@@ -26,17 +26,27 @@ public class CrudUserService {
 	
 	public String checkUsername(User user) {
 		
-		Long userId = userRepository.findByUsername(user.getUsername());
+		User TempUser = userRepository.findByUsername(user.getUsername());
 		
-		if(userId != null ) {
+		if(TempUser != null ) {
 			return "User alredy in database!";
 		}
 		
 		return "No one user find!";
 	}
 	
-	public Long findByUsername(String name) {
+	public String checkEmail(User user) {
 		
-		return userRepository.findByUsername(name);
+		User TempUser = userRepository.findByEmail(user.getEmail());	
+		
+		if(TempUser != null ) {
+			return "Email alredy in database!";
+		}
+		
+		return "No one email find!";
+	}
+	
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 }

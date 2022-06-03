@@ -10,6 +10,11 @@ public class FeedController {
 
 	@GetMapping
 	public String feed() {
+		
+		//Ver escola do usuario
+		//Ver todos os post relacionados a escola
+		//Carregar no feed
+		
 		return "feed";
 	}
 }

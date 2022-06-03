@@ -1,5 +1,7 @@
 package br.com.academic.communication.dto;
 
+import java.time.LocalDateTime;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -14,7 +16,7 @@ public class RegisterUser {
 	private String name;
 	@NotBlank
 	@Size(max=50)
-	private String surname;
+	private String lastName;
 	@NotBlank
 	@Size(max=50)
 	private String profession;
@@ -22,7 +24,7 @@ public class RegisterUser {
 	@Size(max=100)
 	private String email;
 	@NotBlank
-	@Size(min = 5, max=50)
+	@Size(max=50)
 	private String username;
 	@NotBlank
 	@Size(max=200)
@@ -31,10 +33,10 @@ public class RegisterUser {
 	public RegisterUser() {
 	}
 	
-	public RegisterUser(String name, String surname, String profession, String email, String username,
+	public RegisterUser(String name, String lastName, String profession, String email, String username,
 			String password) {
 		this.name = name;
-		this.surname = surname;
+		this.lastName = lastName;
 		this.profession = profession;
 		this.email = email;
 		this.username = username;
@@ -48,10 +50,10 @@ public class RegisterUser {
 		this.name = name;
 	}
 	public String getSurname() {
-		return surname;
+		return lastName;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setSurname(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getProfession() {
 		return profession;
@@ -85,28 +87,36 @@ public class RegisterUser {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEnabled(true);
+		user.setCreatedAt(LocalDateTime.now());
+		user.setUpdatedAt(LocalDateTime.now());
+		user.setEmail(email);
 		
 		return user;
 	}
 
-	public Role toRole() {
+	public Role toRole(User user) {
 		Role role = new Role();
 		
 		role.setUsername(username);
+		role.setUpdatedAt(LocalDateTime.now());
+		role.setCreatedAt(LocalDateTime.now());
+		role.setUser(user);
 		
 		return role;
 	}
 
 	public People toPeople(User user) {
-		People info = new People();
 		
-		info.setEmail(email);
-		info.setName(name);
-		info.setSurname(surname);
-		info.setProfession(profession);
-		info.setUser(user);
+		People people = new People();
+
+		people.setCreatedAt(LocalDateTime.now());
+		people.setUpdatedAt(LocalDateTime.now());
+		people.setName(name);
+		people.setLast_name(lastName);
+		people.setProfession(profession);
+		people.setUser(user);
 		
-		return info;
+		return people;
 	}
 	
 	
