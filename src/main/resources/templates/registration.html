@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Registre sua conta</title>
-    </head>
-	<html>
-	<body>
+<head>
+   <title>Registre sua conta</title>
+</head>
+<html>
+	 <body style="background-color: #737167;">
+
 		<h1>FORM</h1>
 		<form action="#" th:action="@{/register}" th:object="${registerUser}" method="POST" enctype="utf8">
 		    <div>
@@ -46,8 +47,8 @@
 		        <label>School</label>
 		        <input th:field="*{school}" required/>
 		        <span th:if="${#fields.hasErrors('school')}" th:errors="*{school}">Name Error</span>
-		        
 		    </div>
+		    
 		    <button type="submit">submit</button>
 		</form>
 		

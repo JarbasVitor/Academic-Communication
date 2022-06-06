@@ -48,25 +48,25 @@ public class LoginController {
 
 	@Transactional
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("registerUser") RegisterUser registerUser, BindingResult bindingResult) {
-		
-		
+	public String register(@Valid @ModelAttribute("registerUser") RegisterUser registerUser,
+			BindingResult bindingResult) {
+
 		User user = registerUser.toUser();
-		
+
 		People people = registerUser.toPeople(user);
 		Role role = registerUser.toRole(user);
 		School school = registerUser.toSchool(user);
-		
-		if(!(crudUserService.checkUsername(user) == "No one user find!")) {
-			bindingResult.rejectValue("username", "error.username","User Already Registered!");
-		}else if(!(crudUserService.checkEmail(user) == "No one email find!")) {
-			bindingResult.rejectValue("email", "error.email","Email Already Registered!");
+
+		if (!(crudUserService.checkUsername(user) == "No one user find!")) {
+			bindingResult.rejectValue("username", "error.username", "User Already Registered!");
+		} else if (!(crudUserService.checkEmail(user) == "No one email find!")) {
+			bindingResult.rejectValue("email", "error.email", "Email Already Registered!");
 		}
-		
+
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
-		
+
 		try {
 			crudUserService.save(user);
 			crudPeopleService.save(people);
@@ -74,10 +74,10 @@ public class LoginController {
 			crudSchoolService.save(school);
 
 			return "login";
-			
+
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			return "registration";	
+			return "registration";
 		}
 	}
-}	
+}

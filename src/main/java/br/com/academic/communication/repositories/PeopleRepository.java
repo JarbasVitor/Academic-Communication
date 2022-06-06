@@ -10,6 +10,6 @@ import br.com.academic.communication.models.People;
 public interface PeopleRepository extends JpaRepository<People, Long>{
 
 	@Query(value = "SELECT P.IDPEOPLE FROM PEOPLE P WHERE EMAIL = ?1", nativeQuery = true)
-	Long findByEmail(String email);
+	public Long findByEmail(String email);
 
 }
