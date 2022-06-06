@@ -19,6 +19,8 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
+	private String title;
 	private String description;
 	
 	@Column(name="created_at")
@@ -33,8 +35,9 @@ public class Post {
 		super();
 	}
 	
-	public Post(String description, LocalDateTime createdAt, LocalDateTime updatedAt, People people) {
+	public Post(String title, String description, LocalDateTime createdAt, LocalDateTime updatedAt, People people) {
 		super();
+		this.title = title;
 		this.description = description;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -47,6 +50,14 @@ public class Post {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
