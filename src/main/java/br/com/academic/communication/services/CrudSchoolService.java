@@ -19,4 +19,13 @@ public class CrudSchoolService {
 	public void save(School School) {
 		SchoolRepository.save(School);
 	}
+
+	public School findByName(String string) {
+		
+		return SchoolRepository.findByName(string);
+	}
+	
+	public School findById(Long id) {
+		return SchoolRepository.findSchoolById(id);
+	}
 }

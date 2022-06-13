@@ -16,7 +16,7 @@
 		  <span class="navbar-brand  h1 m-2">Academic Communication</span>
 		</nav>
  		<div class="container">
-	 		<div class="d-flex align-items-center flex-column">
+	 		<div th:each="post : ${post}" class="d-flex align-items-center flex-column">
 	 			<div class="card m-4" style="width: 20rem">
 	 				<div class="row g-0">
 	 					<div class="col-md-3">
@@ -27,18 +27,18 @@
 		 				<div class="col-md-9">
 			 				<div class="card-body">
 			 					<div>
-				 					<span class="h3 text-black card-title">Jarbas Vitor</span>
+				 					<span th:text="${post.name + ' ' + post.lastName}" class="text-black card-title">Teste Teste</span>
 				 					<br>
-				 					<span class="text-secondary card-text">Eng De Soft</span>
+				 					<span th:text="${post.profession}"class="text-secondary card-text">Teste Teste</span>
 				 					<br>
-				 					<p class="card-text"><small class="text-muted">Qua - 18:00 PM</small></p>		
+				 					<p class="card-text"><small th:text="${#temporals.format(post.createdAt, 'dd - HH:mm')}" class="text-muted">Qua - 18:00 PM</small></p>		
 				 				</div>
 			 				</div>
 		 				</div>
 	 				</div>
 	 				<div class="card-body ">
-	 					<h5 class="card-title">Titulo Post</h5>
-	 					<p class="card-text">duasuidasiuduiasduiauidasuid<br>duiagsuidgauisdguiasg<br>dasuiduihasduiadui</p>
+	 					<h5 th:text="${post.title}" class="card-title">Titulo Post Teste</h5>
+	 					<p th:text="${post.description}" class="card-text">Texto Teste</p>
 	 				</div>
 	 				
 	 				<img src="https://imgur.com/gallery/TaFV6.png" width="250px" height="250px" class="card-img">	

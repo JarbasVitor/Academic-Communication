@@ -1,5 +1,7 @@
 package br.com.academic.communication.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class CrudPeopleService {
 	
 	public void save(People people) {
 		peopleRepository.save(people);
+	}
+
+	public List<People> findAllBySchool(Long idSchool) {
+		return peopleRepository.findAllBySchool(idSchool);
 	}
 	
 

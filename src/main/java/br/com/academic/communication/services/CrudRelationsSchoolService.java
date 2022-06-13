@@ -19,4 +19,9 @@ public class CrudRelationsSchoolService {
 	public void save(RelationsSchool RelationsSchool) {
 		relationsSchoolRepository.save(RelationsSchool);
 	}
+	
+	public Long FindIdSchoolByUsername(String username) {
+		return relationsSchoolRepository.FindIdSchoolByUsername(username);
+	}
+	
 }
