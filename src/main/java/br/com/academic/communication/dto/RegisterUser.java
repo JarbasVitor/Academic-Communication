@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.academic.communication.models.People;
+import br.com.academic.communication.models.RelationsSchool;
 import br.com.academic.communication.models.Role;
 import br.com.academic.communication.models.School;
 import br.com.academic.communication.models.User;
@@ -142,16 +143,16 @@ public class RegisterUser {
 		return people;
 	}
 
-	public School toSchool(User user) {
+	public RelationsSchool toReSchool(People people, School school) {
 
-		School school = new School();
+		RelationsSchool relationsSchool = new RelationsSchool();
+		
+		relationsSchool.setCreatedAt(LocalDateTime.now());
+		relationsSchool.setUpdatedAt(LocalDateTime.now());
+		relationsSchool.setPeople(people);
+		relationsSchool.setSchool(school);
 
-		school.setCreatedAt(LocalDateTime.now());
-		school.setUpdatedAt(LocalDateTime.now());
-		school.setSchool(this.school);
-		school.setUser(user);
-
-		return school;
+		return relationsSchool;
 	}
 
 }

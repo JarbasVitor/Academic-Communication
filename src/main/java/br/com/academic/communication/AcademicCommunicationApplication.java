@@ -50,7 +50,7 @@ public class AcademicCommunicationApplication implements CommandLineRunner {
 		People people = new People();
 		Role role = new Role();
 
-		School school = crudSchoolService.findByName("Havard");
+		School school = crudSchoolService.findByName("HAWARD");
 		Post post = new Post();
 		
 		RelationsSchool relationSchool = new RelationsSchool(); // <----
@@ -60,6 +60,7 @@ public class AcademicCommunicationApplication implements CommandLineRunner {
 			user.setUsername("Kig22");
 			user.setEmail("2@kig2.com");
 			user.setPassword("edu");
+			System.out.println(user.getPassword());
 			user.setCreatedAt(LocalDateTime.now());
 			user.setUpdatedAt(LocalDateTime.now());
 			user.setEnabled(true);

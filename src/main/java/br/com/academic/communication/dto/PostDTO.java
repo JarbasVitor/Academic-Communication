@@ -90,14 +90,6 @@ public class PostDTO {
 		this.school = school;
 	}
 
-	@Override
-	public String toString() {
-		return "PostDTO [title=" + title + ", description=" + description + ", createdAt=" + createdAt + ", name="
-				+ name + ", lastName=" + lastName + ", profession=" + profession + ", school=" + school + "]";
-	}
-
-
-
 	public void toPostDTO(Post tempPost, People people, School school) {
 		this.name = people.getName();
 		this.lastName = people.getLast_name();
