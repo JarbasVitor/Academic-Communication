@@ -1,0 +1,154 @@
+:root{
+	--clr-WhitePrimary: #f6f6f6;
+	--clr-WhiteSecondary: white;
+	--clr-TextPrimary: #171430;
+	--clr-GrayPrimary: #353434;
+	--clr-NavBackground: #0C7E7E;
+	--clr-CarmesinPrimary: #dc143c;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Barlow', sans-serif;
+	
+}
+
+body{
+	background-color: var(--clr-WhitePrimary);
+}
+
+.nav-list{
+	background: var(--clr-NavBackground);
+	box-shadow: 0px 0px 10px var(--clr-GrayPrimary);
+	margin: 0;
+	padding: 1rem 0;
+	border-radius: 0.2rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 40px;
+}
+
+.nav-item{
+	list-style: none;
+	margin-right: 2rem;
+}
+
+.nav-item a{
+	text-decoration: none;
+	color: var(--clr-WhiteSecondary);
+}
+
+.nav-item a:hover, .form-item a:hover{
+	color: var(--clr-CarmesinPrimary)
+}
+
+.nav-item:first-child {
+	margin-right: auto;
+	margin-left: 1rem;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.container{
+	margin-top: 55px;
+	display:flex;
+	justify-content:center;
+	align-items: center;
+}
+
+.container .container-item{
+	height: 450px;
+	margin: 4rem;
+}
+
+.container .intro-text {
+	margin: 2rem 8rem 1rem 1rem;
+	color: var(--clr-TextPrimary);
+	padding: 1rem;	
+}
+
+.intro-text h2{
+	width: 460px;
+	font-size:2rem;
+	margin: 4px;
+}
+
+.intro-text p{
+	margin: 4px;
+	width: 300px;
+	font-size:1.5rem;
+}
+
+
+.container .div-login{
+	width: 400px;
+	background: var(--clr-WhiteSecondary);
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 1px gray;
+}
+
+.title-login{
+	text-align: center;
+	font-size: 2.2rem;
+	font-weight: 700;
+	margin: 1rem;
+}
+
+.FormLogin {
+	display: flex;
+	flex-direction: column;
+	
+}
+
+.FormLogin .form-item{
+	display:flex;
+	flex-direction: column;
+	
+	align-self: center;
+	margin: 1rem;
+}
+
+.registration{	
+	margin-right: 50px !important;
+	align-self: flex-end !important;
+	
+}
+
+.form-item input[type=text], .form-item input[type=password]{
+	
+	font-size: 1.2rem;
+	width: 300px;
+	height: 40px;
+	margin: 10px;
+	border: 0;
+ 	border-bottom: 1px solid var(--clr-GrayPrimary);
+	outline: 0;
+	
+}
+
+.form-item input[type=submit]{
+	width: 300px;
+	height:50px;
+	color: var(--clr-WhiteSecondary);
+	border: none;
+	background-color: var(--clr-GrayPrimary);
+	font-size: 1.8rem;
+	font-weight: 600;
+	
+}
+
+.form-item a{
+	text-decoration: none;
+	color: var(--clr-NavBackground);
+}
+
+.form-item .msg-error{
+	font-size: 1.2rem;
+	border-top: 1px solid var(--clr-CarmesinPrimary);
+	padding-top: 10px;
+	
+}
+

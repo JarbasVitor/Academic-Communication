@@ -18,7 +18,6 @@ import br.com.academic.communication.models.RelationsSchool;
 import br.com.academic.communication.models.Role;
 import br.com.academic.communication.models.School;
 import br.com.academic.communication.models.User;
-import br.com.academic.communication.repositories.SchoolRepository;
 import br.com.academic.communication.services.CrudPeopleService;
 import br.com.academic.communication.services.CrudRelationsSchoolService;
 import br.com.academic.communication.services.CrudRoleService;

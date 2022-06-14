@@ -10,14 +10,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.com.academic.communication.services.UserDetailsServiceImp;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig implements WebMvcConfigurer{
+public class WebSecurityConfig implements WebMvcConfigurer {
+
+
+	public WebSecurityConfig() {
+		super();
+	}
 
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -31,23 +35,25 @@ public class WebSecurityConfig implements WebMvcConfigurer{
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/registration", "/register").permitAll()
-					.anyRequest().authenticated()
+		http
+			.authorizeRequests()
+				.antMatchers("/registration", "/register","/css/**","/imgs/**")
+					.permitAll().anyRequest().authenticated()
 				.and()
-					.formLogin(form -> form.loginPage("/login")
-							.defaultSuccessUrl("/feed", true).permitAll())
+				.formLogin(form -> 
+					form.loginPage("/login").
+					defaultSuccessUrl("/feed", true).permitAll())
 				.logout(logout -> 
-						logout.logoutUrl("/logout"));
+					logout.logoutUrl("/logout"));
 
 		return http.build();
 	}
 
 
-
 	@Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
-    }
+	}
 
 }

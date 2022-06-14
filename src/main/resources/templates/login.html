@@ -1,49 +1,54 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="pt-br">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="author" content="Jarbas Vitor & Valterlane">
-        <meta name="description" content="Um site para ajudar na comunicação de alunos/professores e estudiosos">
-        <meta http-equiv="content-language" content="pt-br" />
-        <meta name="viewport" content="width=device.width, initial-scale=1.0">
-        <meta name="keywords" content="Academico, comunicação, rede social, professores, alunos, estudiosos">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <title>Faça Seu Login!</title>
-    </head>
-    <body style="background-color: #737167;">
- 		<div class="card position-absolute top-50 start-50 translate-middle shadow-none mb-5 bg-light rounded" style="width: 18rem;">
-	       	<div class="card-body">
-		       	<form class="FormLogin" th:action="@{/login}" method="post">
-					
-					<div class="card-title h2 text-dark m-2">LOGIN</div>	
-					
-					<div class="m-2">
-				   		<label for="username">Username:</label>
-				   		<input type="text" name="username"/>
-				   	</div>
-				   	<div class="m-2">
-						<label for="password">Password:</label>
-				   		<input type="password" name="password"/>
-				   	</div>
-				   	<div class="m-2">
-				   	<a href="/registration">Don't Have a account?</a>
-				   	</div>
-					<input class="btn btn-primary m-2" type="submit" value="Sign In"/>		
-					
-		   		</form>
-		   		<div th:if="${param.error}" class="h4 pt-1 mt-1 text-danger border-top border-danger">
-            		Nome De Usuario Ou senha Invalidos!
-        		</div>
-        
-		        <div th:if="${param.logout}" class="text-danger border-top border-danger">
-		            Você deslogou!
-		        </div>
-		        
-	   		</div>	
-	    </div>
-        
-        
-    </body>
+<html 	xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" 
+		xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+		lang="pt-br">
+<head th:replace="~{base :: head('Academic - Login!')}"></head>
+<body>
+	<div th:replace="~{base :: navDefault}"></div>
+	<div class="container">
+		
+		<div class="container-item intro-text">
+			<h2>Faça seu login para utilizar o site!</h2>
+			<p> 
+				Site para comunicação entre
+			 	professores, alunos e pessoas
+			 	do mundo acadêmico
+			</p>
+		</div>
+		
+		<div class="container-item div-login">
+			
+			<h2 class="title-login">LOGIN</h2>
+			
+			<form class="FormLogin" th:action="@{/login}" method="POST">
+				<div class="form-item">
+					<input type="text" name="username" autofocus="autofocus" placeholder="Login Do Usuário" maxlength="50"/>
+				</div>
+				<div class="form-item">
+					<input type="password" name="password" placeholder="Senha do Usuário" maxlength="200"/>
+				</div>
+				<div class="form-item registration">
+					<a href="/registration">Don't Have a account?</a>
+				</div>
+				<div class="form-item">
+					<input class="btn-login" type="submit" value="LOGAR" />
+				</div>
+				<div class="form-item">			
+					<div th:if="${param.error}" class="msg-error">
+						Nome De Usuário Ou senha Invalidos!
+					</div>
+					<div th:if="${param.logout}" class="msg-error">
+						Você deslogou!
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+</body>
 </html>
 
